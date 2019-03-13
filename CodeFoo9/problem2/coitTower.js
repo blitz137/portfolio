@@ -1,6 +1,6 @@
 //assuming a stored pokeball is about the same size as an average golf ball
 
-//pokeBall radius is equall to 0.84inches
+// a pokeBall radius is equall to 0.84inches
 
 //volume of the poke ball would equall 4/3 * PI * Radius to the third power
 let ballVolume = (4/3) * 3.14 * (0.84*0.84*0.84);

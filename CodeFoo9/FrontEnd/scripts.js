@@ -127,233 +127,7 @@ function getContent(startIndex, count) {
 	getEndpoint('/content?startIndex=' + startIndex + '&count=' + count + '&callback=processContent');
 }
 
-//
-function renderContent(content) {
-
-	var filteredContent = content.filter(function(item) {
-		if (filter == "") return true;
-		return item.contentType == filter;
-	});
-
-
-
-
-	const app = document.getElementById('root');
-	
-	const container = document.createElement("div");
-	container.setAttribute("class", "container");
-	app.appendChild(container);
-
-for (var i = 0; i < filteredContent.length; i++) {
-
-
-
-
-	const item_div =document.createElement('div');
-	item_div.setAttribute('class',"item_div");
-
-
-	const imgDiv =document.createElement("div");
-	imgDiv.setAttribute("class", "imgDiv");
-
-	const imgLink =document.createElement('a');
-	imgLink.setAttribute('target',"_blank");
-
-	const img = document.createElement("img");
-	if(filteredContent[i].thumbnails[0]){
-		img.src = filteredContent[i].thumbnails[0].url;
-	}
-	else{
-		img.src = "missing.png";
-		img.setAttribute("class","not-found");
-	}
-	
-	
-	const duration = document.createElement('span');
-	const icon = document.createElement('i');
-	//does not fix over hour long vids
-	if (filteredContent[i].metadata.duration){
-		
-		duration.setAttribute('class','duration');
-		icon.setAttribute('class', 'fas fa-play-circle');
-		
-		if (filteredContent[i].metadata.duration<60){
-			
-		var vidTime =filteredContent[i].metadata.duration;
-
-		var txt = document.createTextNode("    "+"00:"+vidTime);
-		
-		}
-		else {
-			if(filteredContent[i].metadata.duration/60>60){
-				
-				var vidHour = Math.floor(filteredContent[i].metadata.duration/60/60);
-			
-				if((filteredContent[i].metadata.duration%60)<=9){
-					var vidTime ="0" + vidHour + ":" + Math.floor((filteredContent[i].metadata.duration/60)%60)+":0"+filteredContent[i].metadata.duration%60;
-				}
-				else{
-					var vidTime = "0" + vidHour+":" + Math.floor((filteredContent[i].metadata.duration/60)%60)+":"+filteredContent[i].metadata.duration%60;
-					if(Math.floor((filteredContent[i].metadata.duration/60)%60)<=9){
-						var vidTime = "0" + vidHour+":0" + Math.floor((filteredContent[i].metadata.duration/60)%60)+":"+filteredContent[i].metadata.duration%60;
-					}
-				}
-			}
-			else{
-				if((filteredContent[i].metadata.duration%60)<=9){
-					var vidTime = Math.floor((filteredContent[i].metadata.duration/60))+":0"+filteredContent[i].metadata.duration%60;
-				}
-				else{
-					var vidTime = Math.floor(filteredContent[i].metadata.duration/60)+":"+filteredContent[i].metadata.duration%60;
-				}
-			}
-			
-			if((filteredContent[i].metadata.duration/60)<=9){
-				var txt = document.createTextNode("    "+"0"+vidTime);
-			}
-			else{
-				var txt = document.createTextNode("    "+vidTime);
-			}
-		}	
-	}		
-
-			
-		
-	
-	else{
-		var vidTime ="";
-		
-		
-		var txt ="";
-	}
-
-	//"<i class="fas fa-play-circle"></i>"
-	
-	const titleDiv = document.createElement('div');
-	titleDiv.setAttribute('class','titleDiv');
-
-	const item_nav = document.createElement('div');
-	item_nav.setAttribute('class','item_nav');
-
-	//<i class="far fa-comment"></i>
-
-
-	const p = document.createElement('p');
-	var apiTime = filteredContent[i].metadata.publishDate;
-	var postTime = new Date(apiTime);
-
-	var milliSecs = time - postTime;
-
-
-	var yearSince = Math.floor( milliSecs / (1000*60*60*24*365));
-	var monthSince = Math.floor(milliSecs / (1000*60*60*24*30.5));
-	var daySince = Math.floor(milliSecs / (1000*60*60*24));
-	var hourSince = Math.floor(milliSecs / (1000*60*60));
-	var minuteSince = Math.floor(milliSecs / (1000*60));
-	var secondSince = Math.floor(milliSecs /1000);
-	var timeAgo;
-	
-	if (yearSince>0){
-		timeAgo = yearSince + "y";
-	}
-	else if(monthSince>0){
-		timeAgo = monthSince + "mth";
-	}
-	else if(daySince>0){
-		timeAgo = daySince+ "d";
-	}
-	else if(hourSince>0){
-		timeAgo = hourSince  +"h";
-	}
-	else if (minuteSince>0){
-		timeAgo = minuteSince +"m";
-	}
-	else if(secondSince){
-		timeAgo = secondSince +'s';
-	}
-	p.textContent = timeAgo;
-//<i class="fas fa-circle"></i>
-	const iDot = document.createElement('i');
-	iDot.setAttribute('class',"fas fa-circle");
-	const iComment = document.createElement('i');
-	iComment.setAttribute('class',"far fa-comment");
-	const comP = document.createElement('p');
-
-	if(filteredContent[i].commentCount>0){
-		comP.textContent = filteredContent[i].commentCount;
-	}
-	else{
-		comP.textContent ='';
-	}
-
-	const item_title = document.createElement('div');
-	item_title.setAttribute('class',"item_title");
-
-
-	const a = document.createElement('a');
-	a.setAttribute('target',"_blank");
-
-	if(filteredContent[i].metadata.headline){
-		var title = filteredContent[i].metadata.headline;
-	}	
-	else if(filteredContent[i].metadata.title){
-		var title = filteredContent[i].metadata.title;
-	}
-	else{
-		var title = "Missing title";
-	}
-
-	a.textContent = title;
-
-	var fixedLink =title.replace(/\-/g, " ");
-	fixedLink = fixedLink.replace(/\_/g, " ");
-	fixedLink = fixedLink.replace(/\s\s+/g ," ");
-	fixedLink=fixedLink.replace(/[^a-z|A-Z|0-9|\s]/g ,"").toLowerCase();
-
-//multiple space with single space
-	fixedLink = fixedLink.replace(/\s\s+/g ," ");
-	fixedLink = fixedLink.replace(/\s/g ,"-");
-	fixedLink = fixedLink.replace("-ign-news","");
-
-	
-	var day = apiTime.slice(8,10);
-	var year = apiTime.slice(0,4);
-	var month = apiTime.slice(5,7);
- 	var ignLink = "https://www.ign.com/"+filteredContent[i].contentType+"s/"+year+"/"+month+"/"+day+"/"+fixedLink;
-	var search = ignLink;
-
-	a.setAttribute('href',search);
-	imgLink.setAttribute("href", search);
-	const hr = document.createElement('hr');
-		
-
-	container.appendChild(item_div);
-	item_div.appendChild(imgDiv);
-	imgDiv.appendChild(imgLink);
-	imgLink.appendChild(img);
-	
-	if (duration.classList.contains('duration')){
-		imgDiv.appendChild(duration);
-	}
-		duration.appendChild(icon);
-	
-	if (txt){
-		duration.appendChild(txt);
-	}
-	item_div.appendChild(titleDiv);
-	titleDiv.appendChild(item_nav);
-	item_nav.appendChild(p);
-	item_nav.appendChild(iDot);
-	item_nav.appendChild(iComment);
-	item_nav.appendChild(comP);
-	titleDiv.appendChild(item_title);
-	item_title.appendChild(a);
-	container.appendChild(hr);
-}
-	createPages(page);
-
-}
-
+//removes page navagation at bottom of page
 function removePages(){
 	document.querySelector(".pagination").remove();
 	const pageCreater = document.createElement('div');
@@ -361,20 +135,28 @@ function removePages(){
 	const all = document.querySelector(".all");
 	all.appendChild(pageCreater);
 }
+
+//sets page to first page available and takes you to that page
 function startPage(){
 	if(page!=0){
 		page = 0;
 		resetPage();
 	}
 }
+
+//sets page to last page available and takes you to that page
 function endPage(){
 	if(page!=15){
 		page = 15;
 		resetPage();
 	}
 }
+
+//creates page navigation at bottom
 function createPages(currentPage){
 	removePages();
+
+	//adds first page and previous page links
 	var pagination = document.querySelector(".pagination");
 	const startPage = document.createElement('a');
 	startPage.setAttribute('class',"startPage");
@@ -386,6 +168,8 @@ function createPages(currentPage){
 	lastPage.setAttribute('href','javascript:pageLast()');
 	lastPage.textContent = 'Previous';
 	pagination.appendChild(lastPage);
+
+	//changes page number that is visible as well as highlight
 	if (currentPage>1&&currentPage<=13){
 		for (var i = 0; i < 5 ; i++) {
 			const aPage = document.createElement('a');
@@ -411,7 +195,7 @@ function createPages(currentPage){
 		}
 	}
 	
-
+	//changes page number that is visible as well as highlight
 	else if (currentPage==1){
 
 		for (var i = 0; i < 5 ; i++) {
@@ -434,6 +218,7 @@ function createPages(currentPage){
 			pagination.appendChild(aPage);
 		}
 	}
+	//changes page number that is visible as well as highlight
 	else if (currentPage==0){
 
 		for (var i = 0; i < 5 ; i++) {
@@ -447,7 +232,7 @@ function createPages(currentPage){
 			pagination.appendChild(aPage);
 		}
 	}
-
+	//changes page number that is visible as well as highlight
 	else if (currentPage==14){
 	
 		for (var i = 0; i < 5 ; i++) {
@@ -478,6 +263,7 @@ function createPages(currentPage){
 			
 		}
 	}
+	//changes page number that is visible as well as highlight
 		else  {
 	
 		for (var i = 0; i < 5 ; i++) {
@@ -509,6 +295,7 @@ function createPages(currentPage){
 		}
 	}
 
+	//adds last page and next page links
 	const nextPage = document.createElement('a');
 	nextPage.setAttribute('class',"aLink");
 	nextPage.setAttribute('href','javascript:pageNext()');
@@ -521,6 +308,237 @@ function createPages(currentPage){
 	pagination.appendChild(endPage);
 
 }
+
+//creates html for content provided by api
+function renderContent(content) {
+
+	//filters content based on type video article or both
+	var filteredContent = content.filter(function(item) {
+		if (filter == "") return true;
+		return item.contentType == filter;
+	});
+
+
+
+	//determines where in html doc to add content
+	const app = document.getElementById('root');
+	const container = document.createElement("div");
+	container.setAttribute("class", "container");
+	app.appendChild(container);
+
+	//loops through each item
+	for (var i = 0; i < filteredContent.length; i++) {
+
+
+
+
+		const item_div =document.createElement('div');
+		item_div.setAttribute('class',"item_div");
+
+
+		const imgDiv =document.createElement("div");
+		imgDiv.setAttribute("class", "imgDiv");
+
+		const imgLink =document.createElement('a');
+		imgLink.setAttribute('target',"_blank");
+
+		const img = document.createElement("img");
+		if(filteredContent[i].thumbnails[0]){
+			img.src = filteredContent[i].thumbnails[0].url;
+		}
+		else{
+			img.src = "https://via.placeholder.com/306x172.png";
+			img.setAttribute("class","not-found");
+		}
+		
+		
+		const duration = document.createElement('span');
+		const icon = document.createElement('i');
+		
+		//adds length of vid in front of vid photo
+		if (filteredContent[i].metadata.duration){
+			
+			duration.setAttribute('class','duration');
+			icon.setAttribute('class', 'fas fa-play-circle');
+			
+			if (filteredContent[i].metadata.duration<60){
+				
+			var vidTime =filteredContent[i].metadata.duration;
+
+			var txt = document.createTextNode("    "+"00:"+vidTime);
+			
+			}
+			else {
+				if(filteredContent[i].metadata.duration/60>60){
+					
+					var vidHour = Math.floor(filteredContent[i].metadata.duration/60/60);
+				
+					if((filteredContent[i].metadata.duration%60)<=9){
+						var vidTime ="0" + vidHour + ":" + Math.floor((filteredContent[i].metadata.duration/60)%60)+":0"+filteredContent[i].metadata.duration%60;
+					}
+					else{
+						var vidTime = "0" + vidHour+":" + Math.floor((filteredContent[i].metadata.duration/60)%60)+":"+filteredContent[i].metadata.duration%60;
+						if(Math.floor((filteredContent[i].metadata.duration/60)%60)<=9){
+							var vidTime = "0" + vidHour+":0" + Math.floor((filteredContent[i].metadata.duration/60)%60)+":"+filteredContent[i].metadata.duration%60;
+						}
+					}
+				}
+				else{
+					if((filteredContent[i].metadata.duration%60)<=9){
+						var vidTime = Math.floor((filteredContent[i].metadata.duration/60))+":0"+filteredContent[i].metadata.duration%60;
+					}
+					else{
+						var vidTime = Math.floor(filteredContent[i].metadata.duration/60)+":"+filteredContent[i].metadata.duration%60;
+					}
+				}
+				
+				if((filteredContent[i].metadata.duration/60)<=9){
+					var txt = document.createTextNode("    "+"0"+vidTime);
+				}
+				else{
+					var txt = document.createTextNode("    "+vidTime);
+				}
+			}	
+		}		
+
+				
+			
+		
+		else{
+			var vidTime ="";
+			
+			
+			var txt ="";
+		}
+
+		
+		//adds title
+		const titleDiv = document.createElement('div');
+		titleDiv.setAttribute('class','titleDiv');
+
+		const item_nav = document.createElement('div');
+		item_nav.setAttribute('class','item_nav');
+		const p = document.createElement('p');
+
+		//creates time variables
+		var apiTime = filteredContent[i].metadata.publishDate;
+		var postTime = new Date(apiTime);
+		var milliSecs = time - postTime;
+		//divides milliseconds to find time since article/video release
+		var yearSince = Math.floor( milliSecs / (1000*60*60*24*365));
+		var monthSince = Math.floor(milliSecs / (1000*60*60*24*30.5));
+		var daySince = Math.floor(milliSecs / (1000*60*60*24));
+		var hourSince = Math.floor(milliSecs / (1000*60*60));
+		var minuteSince = Math.floor(milliSecs / (1000*60));
+		var secondSince = Math.floor(milliSecs /1000);
+		var timeAgo;
+		
+		//appends letter to represent year to minutes depending on how long its been since publication
+		if (yearSince>0){
+			timeAgo = yearSince + "y";
+		}
+		else if(monthSince>0){
+			timeAgo = monthSince + "mth";
+		}
+		else if(daySince>0){
+			timeAgo = daySince+ "d";
+		}
+		else if(hourSince>0){
+			timeAgo = hourSince  +"h";
+		}
+		else if (minuteSince>0){
+			timeAgo = minuteSince +"m";
+		}
+		else if(secondSince){
+			timeAgo = secondSince +'s';
+		}
+		p.textContent = timeAgo;
+	
+		//adds red dot between time and comment
+		const iDot = document.createElement('i');
+		iDot.setAttribute('class',"fas fa-circle");
+		const iComment = document.createElement('i');
+		iComment.setAttribute('class',"far fa-comment");
+		
+		//adds number of comments to each publication
+		const comP = document.createElement('p');
+
+		if(filteredContent[i].commentCount>0){
+			comP.textContent = filteredContent[i].commentCount;
+		}
+		else{
+			comP.textContent ='';
+		}
+
+		//adds title to page
+		const item_title = document.createElement('div');
+		item_title.setAttribute('class',"item_title");
+
+
+		const a = document.createElement('a');
+		a.setAttribute('target',"_blank");
+
+		if(filteredContent[i].metadata.headline){
+			var title = filteredContent[i].metadata.headline;
+		}	
+		else if(filteredContent[i].metadata.title){
+			var title = filteredContent[i].metadata.title;
+		}
+		else{
+			var title = "Missing title";
+		}
+
+		//takes title of publication then removes spaces and special charecters and replaces spaces with dashes
+		a.textContent = title;
+		var fixedLink =title.replace(/\-/g, " ");
+		fixedLink = fixedLink.replace(/\_/g, " ");
+		fixedLink = fixedLink.replace(/\s\s+/g ," ");
+		fixedLink=fixedLink.replace(/[^a-z|A-Z|0-9|\s]/g ,"").toLowerCase();
+		fixedLink = fixedLink.replace(/\s\s+/g ," ");
+		fixedLink = fixedLink.replace(/\s/g ,"-");
+		fixedLink = fixedLink.replace("-ign-news","");
+
+		//takes time of publication
+		var day = apiTime.slice(8,10);
+		var year = apiTime.slice(0,4);
+		var month = apiTime.slice(5,7);
+		//creates link to publication 
+		//doesn't always work api does not provide link to publications
+		//I noticed the url of publications are ussually based off of title content type and date 
+		//so I made this to send you to what the url should be if ign used the same method
+	 	var ignLink = "https://www.ign.com/"+filteredContent[i].contentType+"s/"+year+"/"+month+"/"+day+"/"+fixedLink;
+		var search = ignLink;
+		a.setAttribute('href',search);
+		imgLink.setAttribute("href", search);
+		const hr = document.createElement('hr');
+			
+
+		container.appendChild(item_div);
+		item_div.appendChild(imgDiv);
+		imgDiv.appendChild(imgLink);
+		imgLink.appendChild(img);
+		
+		if (duration.classList.contains('duration')){
+			imgDiv.appendChild(duration);
+		}
+			duration.appendChild(icon);
+		
+		if (txt){
+			duration.appendChild(txt);
+		}
+		item_div.appendChild(titleDiv);
+		titleDiv.appendChild(item_nav);
+		item_nav.appendChild(p);
+		item_nav.appendChild(iDot);
+		item_nav.appendChild(iComment);
+		item_nav.appendChild(comP);
+		titleDiv.appendChild(item_title);
+		item_title.appendChild(a);
+		container.appendChild(hr);
+	}
+	createPages(page);
+}
+
 
 
 
