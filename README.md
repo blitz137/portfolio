@@ -6,7 +6,7 @@ be done in whatever format you feel most comfortable with, and doing a video as 
 Doing a webpage allowed for this and I thought was a fun way to do the project.
 
 The answer to the second requirement can be found in portfolio/CodeFoo9/problem2/. 
-The JS file has the math for the problem in code while the html displays my thought process as well as the result from the JS.
+The JS file has the math for the problem in code while the html displays my thought process.
 
 The answer to the third requirement can be found in portfolio/CodeFoo9/problem3/.
 I used JS to solve the problem and the index.html file displays the result. My rational is explained in JS file as comments.
