@@ -226,3 +226,16 @@ span{
      width: 100px;
   }
 }
+
+@media screen and (max-width: 450px){
+  .pagination a{
+    font-size: 10px;
+
+  }
+}
+@media screen and (max-width: 350px){
+  .pagination a{
+    font-size: 7px;
+
+  }
+}
