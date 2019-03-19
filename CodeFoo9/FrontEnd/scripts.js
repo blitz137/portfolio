@@ -488,15 +488,9 @@ function renderContent(content) {
 			var title = "Missing title";
 		}
 
-		//takes title of publication then removes spaces and special charecters and replaces spaces with dashes
+		
 		a.textContent = title;
-		var fixedLink =title.replace(/\-/g, " ");
-		fixedLink = fixedLink.replace(/\_/g, " ");
-		fixedLink = fixedLink.replace(/\s\s+/g ," ");
-		fixedLink=fixedLink.replace(/[^a-z|A-Z|0-9|\s]/g ,"").toLowerCase();
-		fixedLink = fixedLink.replace(/\s\s+/g ," ");
-		fixedLink = fixedLink.replace(/\s/g ,"-");
-		fixedLink = fixedLink.replace("-ign-news","");
+		var slugLink = filteredContent[i].metadata.slug;
 
 		//takes time of publication
 		var day = apiTime.slice(8,10);
@@ -506,7 +500,7 @@ function renderContent(content) {
 		//doesn't always work api does not provide link to publications
 		//I noticed the url of publications are ussually based off of title content type and date 
 		//so I made this to send you to what the url should be if ign used the same method
-	 	var ignLink = "https://www.ign.com/"+filteredContent[i].contentType+"s/"+year+"/"+month+"/"+day+"/"+fixedLink;
+	 	var ignLink = "https://www.ign.com/"+filteredContent[i].contentType+"s/"+year+"/"+month+"/"+day+"/"+slugLink;
 		var search = ignLink;
 		a.setAttribute('href',search);
 		imgLink.setAttribute("href", search);

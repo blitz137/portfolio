@@ -4,15 +4,20 @@
 	<title>Devon Mires</title>
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
 <body>
   
 <div id="hi" class="hi">
 <div id="navbar">
 	<div>
+	<div>
 <h1><a href="#hi">HI, I'M DEVON MIRES</a></h1>
 </div>
-<div>
+<i class="fas fa-hamburger"></i>
+</div>
+<div class="visible navDrop">
   	<a href="#projects">Projects</a>
   	<a href="#about">About Me</a>
   	<a href="#why-me">Why Me</a>
@@ -28,7 +33,7 @@
 
 	<h1>coit tower heist</h1>
 	<div class="coit">
-		<p>To find the amount of pokeballs that could fit in coit tower. You use the formula for figuring out how many spheres could fit in a container. Which is (filled space)/(volume of sphere). Where filled space is equal to (container volume) * (packing density). For spheres in a container the density you get from non-random packing is 74%. So only 26% of the space in the tower is empty space. So If you divide the towers filled volume by the volume of a pokeball, you get the aproximate number of pokeballs that could fit in the tower. If the balls where stored randomly the avarage filled space is equall to 64% so 36% of the space would be empty space.
+		<p>To find the amount of pokeballs that could fit in coit tower. You use the formula for figuring out how many spheres could fit in a container. Which is (filled space)/(volume of sphere). Where filled space is equal to (container volume) * (packing density). For spheres in a container the density you get from non-random packing is 74%. So only 26% of the space in the tower is empty space. So If you divide the towers filled volume by the volume of a pokeball, you get the aproximate number of pokeballs that could fit in the tower. If the balls where stored randomly the avarage filled space is equall to 64%, so 36% of the space would be empty space.
 
 </p>
 
@@ -64,9 +69,9 @@
 <h1>Front End project</h1>
 <div class="coit front-end">
 	<div><p>
-This is my front end solution. I followed the design as well as I could. I used fontawesome to match the icons closely. Not all content contained a thumbnail so I used placeholder images where necessary. If you click on the titles or images it will send you to the article or video on IGN's site! I noticed in most cases the urls for articles on your site are just the content type, date, and titles of the content. So using regexps I changed the titles into url links. This does not work with all of them, because not every url follows this naming convention. I'm very excited for you to see my work so please feel free to check it out and give constructive feedback! Thank You!</p>
+This is my front end solution. I followed the design as well as I could. I used fontawesome to match the icons closely. Not all content contained a thumbnail so I used placeholder images where necessary. If you click on the titles or images it will send you to the article or video on IGN's site! I noticed in most cases the urls for articles on your site are just the content type, date, and titles of the content. The api conveniently provides the slugs for the articles so I was able to add these together to get the url for the content. I'm very excited for you to see my work so please feel free to check it out and give constructive feedback! Thank You!</p>
 <a target="blank" href="CodeFoo9/FrontEnd/">See full page ></a></div>
-<img src="https://s3.amazonaws.com/o.www.ign.com/code-foo/2019/static/img/front-end.gif">
+<img src="frontEnd.png">
 
 </div>
 
@@ -78,16 +83,14 @@ This is my front end solution. I followed the design as well as I could. I used 
 	<div class="aboutPs">
 		<div><p>
 			
-			My name is Devon Mires, I'm 20 years old, and I'm from Texas. I learned the basics of coding a couple of years ago and in the last year I've started to learn about web-development. A friend of mine who does web-dev encouraged me to look into it and see if I would like it. I started learning html from codecademy and after a while I really started to love it. I am a largly self-taught programmer mostly use free online resources as well as some paid ones. I have even taken some college classes at the local college about programming basics in my pursuit of learning.
+			I'm 20 years old and from Texas. I learned the basics of coding a couple of years ago and in the last year I've started to learn about web-development. A friend of mine who does web-dev encouraged me to look into it and see if I would like it. I started learning html from codecademy and after a while I really started to love it. I am a largly self-taught programmer, who mostly used free online resources as well as some paid ones. I have even taken some college classes at the local college on programming basics in my pursuit of learning.
 
 
 
 
 
 		</p><p>
-			I'm very torn on what's my favorite kind of video game. I really love open shooters like far-cry, fall-out, and just cause. But I sometimes all I want to play is a suspense horror like outlast, alien isolation, or a resident evil title. I guess if I am playing solo I prefer open world shooters, because I can go whereever I want and do whatever I want. If I'm playing with friends online we'll ussually play something like call of duty(zombies, multiplayer, or blackout), apex legends, or rainbow 6 siege. 
-
-.</p></div>
+			I enjoy reading a and video games a lot. I mostly prefer mystery stories and science fiction. I do read some philosophy and apologetics on occasion. When it comes to games I'm very torn on what's my favorite kind. I really love open shooters like far-cry, fall-out, and just cause. But I sometimes all I want to play is a suspense horror like outlast, alien isolation, or a resident evil title. I guess if I am playing solo I prefer open world shooters, because I can go wherever I want and do whatever I want. If I'm playing with friends online we'll ussually play something like call of duty(zombies, multiplayer, or blackout), apex legends, or rainbow 6 siege.</p></div>
 		<div><p>If I play a game with someone in person like my brother we'll typically play a solo-player horror game and just trade out the controller when one of us dies or reaches a new section. 
 
 There so many differnet kinds of games it's hard to choose a favorite, but I love how they are so diverse. No matter what kind of mood I'm in or if I'm alone, with one person, or with several there's always a game to fit the occasion. 
@@ -95,8 +98,8 @@ There so many differnet kinds of games it's hard to choose a favorite, but I lov
 </p>
 
 <p>
-	I enjoy reading a lot as well. Mostly mystery stories and science fiction. I do read some philosophy and apologetics.
-	<!-- talk a little about this. Talk about programming a little bit why you are passiolnate. maybe waht you spend time doing outside of home life so you do not sound like a hermit. mention dream center-->
+	In my free time I am trying to learn how to make browser games. This would be the perfect combination of my passions and make a nice portfolio piece. I am currently re-building the website for a local chapter of a non-profit organization called the Dream Center. This is a very exciting opportunity for me. It contains lots of challenges and I am learning so much while being able help make a difference in my community. I hope to keep learning about web-development to improve my skills and use them to make a difference.
+	
 
 
 </p></div>
@@ -108,27 +111,36 @@ There so many differnet kinds of games it's hard to choose a favorite, but I lov
 <div id="why-me" class="why">
 	<div>
 	<h1>why i'm excited to work with you</h1>
-	<p>Because there will be empty space between each pokeball you need to figure out the empty space and the filled space.
+	<p>
+			IGN is one of the most reliable resources for game news.
+	Anytime I want to look up something in the gaming community It's nice to know I can just add ign to my search and get reliable information.
+	I often use IGN to get information on upcoming games, to look up reviews or the occasional walk-through when I get stuck. 
 
-In geometry sphere packing refers to an arrangement of spheres in a 3 dimensional space. Typically if the spheres are equal in size and packed densly there will be 26% of empty space.
-
-So the filled space of the tower is only 74% percent so it has a packing density of 0.74.
-
-If a stored pokeball is about the size of a golfball then a pokeball radius is equall to 0.84 inches</p>
+	 Video games and web-development are two of my greatest passions and working at IGN would be the perfect combination of those two. I will do my best to learn everything you have to teach me and bring my passion to my work.
+</p>
 <p>
-Because there will be empty space between each pokeball you need to figure out the empty space and the filled space.
+	It would be an amazing learning oppertunity and really help propell my development career. I would love to be apart of ign and help contribute to the growing community of IGN.
 
-In geometry sphere packing refers to an arrangement of spheres in a 3 dimensional space. Typically if the spheres are equal in size and packed densly there will be 26% of empty space.</p>
+	I've aready learned from the initial projects so thank you for doing this program and taking the time to review my submission it means a lot to me.
+</p>
 </div>
 
 </div>
 
 <footer>
 	<div>
-		<p>Email:</p>
-		<p>GitHub:</p>
-		<p>CodePen:</p>
-	</div>
+<div>
+<p>Email: </p>
+	<a href="mailto:dmires13@gmail.com?subject=Your Code Foo Submission"> Dmires13@gmail.com</a></div>
+<div>
+<p>GitHub:</p>
+	<a href="https://github.com/blitz137/portfolio"> Github.com/Blitz137</a>
+		</div>
+		<div>
+<p>CodePen:</p>
+			<a href="https://codepen.io/blitz137/"> Codepen.io/Blitz137</a>
+	</div>  
+		</div>
 </footer>
 
   <!-- <h1>My Site</h1>
