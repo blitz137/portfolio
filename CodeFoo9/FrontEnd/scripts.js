@@ -1,3 +1,7 @@
+//Devon Mires IGN CODE-FOO Front End Solution
+//Front End
+//3-15-2019
+
 window.content = [];
 var time = new Date();
 var button = document.querySelectorAll('button');

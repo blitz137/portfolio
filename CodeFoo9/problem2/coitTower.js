@@ -1,3 +1,7 @@
+//Devon Mires IGN CODE-FOO Solution 2 PokeBall
+//Coit Tower Hiest
+//3-10-2019
+
 /*To find the amount of pokeballs that could fit in coit tower. You use the formula (filled space)/(volume of sphere). Where filled space is equal to (container volume) * (packing density). The average packing for organized storage is 74%*/
 
 //assuming a stored pokeball is about the same size as an average golf ball
