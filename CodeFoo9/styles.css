@@ -69,14 +69,14 @@ body {
   background-color: #270129;
 }
 
-.hi video{
+.hi .video{
    margin-top: 75px;
     padding: 10px 0;
     width: 560px;
     height: 340px;
 }
 
-video{
+.video{
 
   max-width: 95%;
   margin: auto; 
